@@ -3,6 +3,7 @@ package com.mthsgimenez.participe.controller;
 import com.mthsgimenez.participe.domain.company.Company;
 import com.mthsgimenez.participe.domain.company.CompanyDTO;
 import com.mthsgimenez.participe.service.CompanyService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,8 +28,7 @@ public class CompanyController {
     }
 
     @PostMapping
-    public ResponseEntity<Company> createCompany(@RequestParam("name") String name) {
-        CompanyDTO companyDTO = new CompanyDTO(name);
+    public ResponseEntity<Company> createCompany(@Valid @RequestBody CompanyDTO companyDTO) {
         return ResponseEntity.ok(service.createCompany(companyDTO));
     }
 
@@ -39,8 +39,7 @@ public class CompanyController {
     }
 
     @PutMapping("/{companyId}")
-    public ResponseEntity<Company> updateCompany(@PathVariable("companyId") Long id, @RequestParam("name") String name) {
-        CompanyDTO companyDTO = new CompanyDTO(name);
+    public ResponseEntity<Company> updateCompany(@PathVariable("companyId") Long id, @Valid @RequestBody CompanyDTO companyDTO) {
         return ResponseEntity.ok(service.updateCompany(id, companyDTO));
     }
 }
