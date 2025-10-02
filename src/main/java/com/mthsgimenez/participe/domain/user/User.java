@@ -4,7 +4,6 @@ import com.mthsgimenez.participe.domain.checkin.Checkin;
 import com.mthsgimenez.participe.domain.company.Company;
 import com.mthsgimenez.participe.domain.event.Event;
 import com.mthsgimenez.participe.domain.feedback.Feedback;
-import com.mthsgimenez.participe.domain.permission.Permission;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,14 +30,6 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "company_id")
     private Company company;
-
-    @ManyToMany
-    @JoinTable(
-            name = "permissions_users",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "permission_id")
-    )
-    private Set<Permission> permissions;
 
     @ManyToMany(mappedBy = "users")
     private Set<Event> events;
