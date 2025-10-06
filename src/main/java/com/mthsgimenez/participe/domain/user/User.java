@@ -12,6 +12,7 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Collection;
 import java.util.List;
@@ -34,6 +35,7 @@ public class User implements UserDetails {
 
     private String password;
 
+    @Enumerated(EnumType.STRING)
     private UserRole role;
 
     @ManyToOne
@@ -49,7 +51,13 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user")
     private Set<Checkin> checkins;
 
-    //  TODO: implementar setPassword com criptografia de senha
+    public User(String email, String name, String password, Company company, UserRole role) {
+        this.setEmail(email);
+        this.setName(name);
+        this.setPassword(password);
+        this.setCompany(company);
+        this.setRole(role);
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
