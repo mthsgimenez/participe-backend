@@ -7,6 +7,7 @@ import com.mthsgimenez.participe.exception.EntityNotFoundException;
 import com.mthsgimenez.participe.repository.CompanyRepository;
 import com.mthsgimenez.participe.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,6 +38,8 @@ public class UserService {
         user.setName(data.name());
         user.setEmail(data.email());
         user.setCompany(company);
+        user.setRole(data.role());
+        user.setPassword(new BCryptPasswordEncoder().encode(data.password()));
 
         return repository.save(user);
     }
@@ -56,7 +59,8 @@ public class UserService {
         existingUser.setCompany(company);
         existingUser.setName(data.name());
         existingUser.setEmail(data.email());
+        existingUser.setRole(data.role());
 
-        return existingUser;
+        return repository.save(existingUser);
     }
 }
