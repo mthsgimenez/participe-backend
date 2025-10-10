@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.OffsetDateTime;
 import java.util.Set;
 
 @Entity
@@ -24,6 +25,7 @@ public class Event {
 
     private String name;
     private String description;
+    private OffsetDateTime date;
     private String image_url;
     private String event_page_qrcode;
     private String checkin_qrcode;

@@ -8,6 +8,7 @@ CREATE TABLE events (
 	id serial NOT NULL,
 	description text NULL,
 	"name" varchar(100) NOT NULL,
+    "date" timestamptz NOT NULL,
 	image_url text NULL,
 	event_page_qrcode text NULL,
 	checkin_qrcode text NULL,

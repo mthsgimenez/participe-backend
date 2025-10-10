@@ -42,15 +42,6 @@ public class User implements UserDetails {
     @JoinColumn(name = "company_id")
     private Company company;
 
-    @ManyToMany(mappedBy = "users")
-    private Set<Event> events;
-
-    @OneToMany(mappedBy = "user")
-    private Set<Feedback> feedbacks;
-
-    @OneToMany(mappedBy = "user")
-    private Set<Checkin> checkins;
-
     public User(String email, String name, String password, Company company, UserRole role) {
         this.setEmail(email);
         this.setName(name);
